@@ -8,8 +8,8 @@ const del = require('del');
 
 
  
-gulp.task ('buildStyles', function() {
-    return gulp.src('./assets/**/*.css')
+gulp.task ('buildStyles', function(done) {
+      gulp.src('./assets/**/*.css')
       .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
       .pipe(rev())
       .pipe(gulp.dest('./public/assets'))
@@ -18,12 +18,13 @@ gulp.task ('buildStyles', function() {
         merge: true
       }))
       .pipe(gulp.dest('./public/assets'))
+      done();
   });
   
    
 
-  gulp.task('compress', function () {
-    return gulp.src('./assets/**/*.js')
+  gulp.task('compress', function (done) {
+     gulp.src('./assets/**/*.js')
     .pipe(uglify())
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
@@ -32,10 +33,11 @@ gulp.task ('buildStyles', function() {
         merge: true
       }))
       .pipe(gulp.dest('./public/assets'))
+      done();
 });
 
-gulp.task('images', function() {
-    return gulp.src('./assets/**/*.+(png|jpg|gif|svg|jpeg)' )
+gulp.task('images', function(done) {
+      gulp.src('./assets/**/*.+(png|jpg|gif|svg|jpeg)' )
      .pipe(imagemin())
      .pipe(rev())
      .pipe(gulp.dest('./public/assets'))
@@ -44,6 +46,7 @@ gulp.task('images', function() {
         merge: true
       }))
       .pipe(gulp.dest('./public/assets'))
+      done();
  });
 
 
@@ -55,6 +58,7 @@ gulp.task('images', function() {
 
 //  });
 
- gulp.task('build', gulp.series('buildStyles','compress','images'), function(){
+ gulp.task('build', gulp.series('buildStyles','compress','images'), function(done){
     console.log('building assets');
+    done();
  });
