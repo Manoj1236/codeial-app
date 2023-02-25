@@ -3,7 +3,7 @@ const env = require('./config/environment');
 const logger = require('morgan');
 const express=require('express');
 const app=express();
-require('./config/view-helpers')(app);
+// require('./config/view-helpers')(app);
 const port=8000;
 const expressLayouts=require('express-ejs-layouts');
 const db = require('./config/mongoose');
@@ -18,9 +18,11 @@ const MongoStore = require('connect-mongo') ;
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
-
+// set the chat server to be used with socket io
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log('chat server is listening on port 5000');
 const path = require('path');
  
 app.use(express.urlencoded({extended:true}));
