@@ -2,7 +2,7 @@ const fs = require('fs');
 const rfs = require('rotating-file-stream');
 const path = require('path');
 require('dotenv').config('./env');
-console.log(process.env);
+ 
 
 const logDirectory  = path.join(__dirname, '../production_logs');
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
