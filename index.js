@@ -1,6 +1,6 @@
 const cookieParser = require('cookie-parser');
 const env = require('./config/environment');
-const logger = require('morgan');
+ 
 const express=require('express');
 const app=express();
 // require('./config/view-helpers')(app);
@@ -33,7 +33,7 @@ app.use(express.static(env.asset_path));
 // mkae the uploads path availiable to  browser
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-app.use(logger(env.morgan.mode, env.morgan.options));
+
 
  
 
